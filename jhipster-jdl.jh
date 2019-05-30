@@ -1,0 +1,65 @@
+entity UserDetails{
+userId String required, 
+firstName String,
+lastName String,
+password String
+mobileNum Double,
+alert Alert
+
+}
+entity Post{
+userId String,
+description String,
+active Boolean,
+createdOn Instant,
+
+}
+enum Alert{
+RED,
+ORANGE,
+GREEN
+
+}
+
+entity Location{
+	latitude String,
+    longitude String
+}
+entity Comment{
+userId String,
+content String,
+
+}
+
+entity Report{
+userId String,
+description String,
+reportType ReportType
+}
+enum ReportType{
+FAKE,
+SOLVED,
+DOING,
+TIMEOUT
+
+}
+
+entity FriendList{
+friendId String
+}
+
+
+relationship OneToOne{
+Post {location} to Location
+
+}
+relationship OneToMany{
+Post{comments} to Comment,
+Comment{replies} to Comment,
+Post {reports} to Report
+UserDetails{friends} to FriendList
+}
+dto * with mapstruct
+service all with serviceImpl
+paginate * with pagination
+
