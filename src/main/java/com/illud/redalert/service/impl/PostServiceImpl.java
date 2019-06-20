@@ -86,11 +86,4 @@ public class PostServiceImpl implements PostService {
         log.debug("Request to delete Post : {}", id);
         postRepository.deleteById(id);
     }
-
-	@Override
-	public Page<PostDTO> findByUserId(String userId, Pageable pageable) {
-		log.debug("Request to findByUserId logggg---- : {}", userId);
-		return postRepository.findByuserId(userId,pageable).map(postMapper::toDto);
-		
-	}
 }

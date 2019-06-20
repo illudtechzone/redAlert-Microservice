@@ -2,6 +2,7 @@ package com.illud.redalert.service.dto;
 import java.time.Instant;
 import java.io.Serializable;
 import java.util.Objects;
+import com.illud.redalert.domain.enumeration.Alert;
 
 /**
  * A DTO for the Post entity.
@@ -17,6 +18,8 @@ public class PostDTO implements Serializable {
     private Boolean active;
 
     private Instant createdOn;
+
+    private Alert alert;
 
 
     private Long locationId;
@@ -61,6 +64,14 @@ public class PostDTO implements Serializable {
         this.createdOn = createdOn;
     }
 
+    public Alert getAlert() {
+        return alert;
+    }
+
+    public void setAlert(Alert alert) {
+        this.alert = alert;
+    }
+
     public Long getLocationId() {
         return locationId;
     }
@@ -98,6 +109,7 @@ public class PostDTO implements Serializable {
             ", description='" + getDescription() + "'" +
             ", active='" + isActive() + "'" +
             ", createdOn='" + getCreatedOn() + "'" +
+            ", alert='" + getAlert() + "'" +
             ", location=" + getLocationId() +
             "}";
     }

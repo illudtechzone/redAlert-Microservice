@@ -86,11 +86,4 @@ public class CommentServiceImpl implements CommentService {
         log.debug("Request to delete Comment : {}", id);
         commentRepository.deleteById(id);
     }
-
-	@Override
-	public Page<CommentDTO> findByUserId(String userId, Pageable pageable) {
-		log.debug("Request to findByUserId : {}", userId,pageable);
-		
-		return commentRepository.findByUserId(userId,pageable).map(commentMapper::toDto);
-	}
 }

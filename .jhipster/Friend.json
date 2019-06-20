@@ -1,25 +1,27 @@
 {
-    "name": "Comment",
+    "name": "Friend",
     "fields": [
         {
             "fieldName": "userId",
             "fieldType": "String"
         },
         {
-            "fieldName": "content",
+            "fieldName": "friendId",
             "fieldType": "String"
-        }
-    ],
-    "relationships": [
+        },
         {
-            "relationshipName": "post",
-            "otherEntityName": "post",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
+            "fieldName": "accepted",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Status",
+            "fieldValues": "PENDING,ACCEPTED,REJECTED"
         }
     ],
-    "changelogDate": "20190524044825",
-    "entityTableName": "comment",
+    "relationships": [],
+    "changelogDate": "20190618110102",
+    "entityTableName": "friend",
     "dto": "mapstruct",
     "pagination": "pagination",
     "service": "serviceImpl",

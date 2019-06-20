@@ -12,7 +12,7 @@
         {
             "fieldName": "reportType",
             "fieldType": "ReportType",
-            "fieldValues": "FAKE,SOLVED,DOING,TIMEOUT"
+            "fieldValues": "FAKE,SOLVED,INPROGRESS,TIMEOUT"
         }
     ],
     "relationships": [

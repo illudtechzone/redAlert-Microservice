@@ -1,18 +1,19 @@
 package com.illud.redalert.service.dto;
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Lob;
 
 /**
- * A DTO for the Comment entity.
+ * A DTO for the Media entity.
  */
-public class CommentDTO implements Serializable {
+public class MediaDTO implements Serializable {
 
     private Long id;
 
-    private String userId;
+    @Lob
+    private byte[] file;
 
-    private String content;
-
+    private String fileContentType;
 
     private Long postId;
 
@@ -24,20 +25,20 @@ public class CommentDTO implements Serializable {
         this.id = id;
     }
 
-    public String getUserId() {
-        return userId;
+    public byte[] getFile() {
+        return file;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setFile(byte[] file) {
+        this.file = file;
     }
 
-    public String getContent() {
-        return content;
+    public String getFileContentType() {
+        return fileContentType;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setFileContentType(String fileContentType) {
+        this.fileContentType = fileContentType;
     }
 
     public Long getPostId() {
@@ -57,11 +58,11 @@ public class CommentDTO implements Serializable {
             return false;
         }
 
-        CommentDTO commentDTO = (CommentDTO) o;
-        if (commentDTO.getId() == null || getId() == null) {
+        MediaDTO mediaDTO = (MediaDTO) o;
+        if (mediaDTO.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(getId(), commentDTO.getId());
+        return Objects.equals(getId(), mediaDTO.getId());
     }
 
     @Override
@@ -71,10 +72,9 @@ public class CommentDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "CommentDTO{" +
+        return "MediaDTO{" +
             "id=" + getId() +
-            ", userId='" + getUserId() + "'" +
-            ", content='" + getContent() + "'" +
+            ", file='" + getFile() + "'" +
             ", post=" + getPostId() +
             "}";
     }

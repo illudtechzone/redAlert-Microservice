@@ -15,6 +15,7 @@ public interface PostMapper extends EntityMapper<PostDTO, Post> {
     PostDTO toDto(Post post);
 
     @Mapping(source = "locationId", target = "location")
+    @Mapping(target = "media", ignore = true)
     @Mapping(target = "comments", ignore = true)
     @Mapping(target = "reports", ignore = true)
     Post toEntity(PostDTO postDTO);

@@ -116,15 +116,4 @@ public class PostResource {
         postService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-    @GetMapping("/posts-userId")
-    public ResponseEntity<List<PostDTO>> getAllDetailsByuserId(@RequestParam String userId,Pageable pageable){
-    	log.debug("REST request to getAllDetailsByuserId : {}", userId);
-    	Page<PostDTO> postPage = postService.findByUserId(userId,pageable);
-    	HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(postPage, "/api/posts-userid");
-    	
-		return ResponseEntity.ok().headers(headers).body(postPage.getContent());
-		   	
-    }
-    
-    
 }

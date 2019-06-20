@@ -1,13 +1,10 @@
 {
-    "name": "Comment",
+    "name": "Media",
     "fields": [
         {
-            "fieldName": "userId",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "content",
-            "fieldType": "String"
+            "fieldName": "file",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
         }
     ],
     "relationships": [
@@ -18,8 +15,8 @@
             "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20190524044825",
-    "entityTableName": "comment",
+    "changelogDate": "20190618110058",
+    "entityTableName": "media",
     "dto": "mapstruct",
     "pagination": "pagination",
     "service": "serviceImpl",

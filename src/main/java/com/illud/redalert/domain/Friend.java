@@ -1,19 +1,20 @@
 package com.illud.redalert.domain;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.illud.redalert.domain.enumeration.Status;
+
 /**
- * A Comment.
+ * A Friend.
  */
 @Entity
-@Table(name = "comment")
-public class Comment implements Serializable {
+@Table(name = "friend")
+public class Friend implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
@@ -24,12 +25,15 @@ public class Comment implements Serializable {
     @Column(name = "user_id")
     private String userId;
 
-    @Column(name = "content")
-    private String content;
+    @Column(name = "friend_id")
+    private String friendId;
 
-    @ManyToOne
-    @JsonIgnoreProperties("comments")
-    private Post post;
+    @Column(name = "accepted")
+    private Boolean accepted;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private Status status;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -44,7 +48,7 @@ public class Comment implements Serializable {
         return userId;
     }
 
-    public Comment userId(String userId) {
+    public Friend userId(String userId) {
         this.userId = userId;
         return this;
     }
@@ -53,30 +57,43 @@ public class Comment implements Serializable {
         this.userId = userId;
     }
 
-    public String getContent() {
-        return content;
+    public String getFriendId() {
+        return friendId;
     }
 
-    public Comment content(String content) {
-        this.content = content;
+    public Friend friendId(String friendId) {
+        this.friendId = friendId;
         return this;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setFriendId(String friendId) {
+        this.friendId = friendId;
     }
 
-    public Post getPost() {
-        return post;
+    public Boolean isAccepted() {
+        return accepted;
     }
 
-    public Comment post(Post post) {
-        this.post = post;
+    public Friend accepted(Boolean accepted) {
+        this.accepted = accepted;
         return this;
     }
 
-    public void setPost(Post post) {
-        this.post = post;
+    public void setAccepted(Boolean accepted) {
+        this.accepted = accepted;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public Friend status(Status status) {
+        this.status = status;
+        return this;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -88,11 +105,11 @@ public class Comment implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Comment comment = (Comment) o;
-        if (comment.getId() == null || getId() == null) {
+        Friend friend = (Friend) o;
+        if (friend.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(getId(), comment.getId());
+        return Objects.equals(getId(), friend.getId());
     }
 
     @Override
@@ -102,10 +119,12 @@ public class Comment implements Serializable {
 
     @Override
     public String toString() {
-        return "Comment{" +
+        return "Friend{" +
             "id=" + getId() +
             ", userId='" + getUserId() + "'" +
-            ", content='" + getContent() + "'" +
+            ", friendId='" + getFriendId() + "'" +
+            ", accepted='" + isAccepted() + "'" +
+            ", status='" + getStatus() + "'" +
             "}";
     }
 }

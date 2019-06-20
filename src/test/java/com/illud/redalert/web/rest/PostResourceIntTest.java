@@ -36,6 +36,7 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.illud.redalert.domain.enumeration.Alert;
 /**
  * Test class for the PostResource REST controller.
  *
@@ -56,6 +57,9 @@ public class PostResourceIntTest {
 
     private static final Instant DEFAULT_CREATED_ON = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_CREATED_ON = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+
+    private static final Alert DEFAULT_ALERT = Alert.RED;
+    private static final Alert UPDATED_ALERT = Alert.ORANGE;
 
     @Autowired
     private PostRepository postRepository;
@@ -108,7 +112,8 @@ public class PostResourceIntTest {
             .userId(DEFAULT_USER_ID)
             .description(DEFAULT_DESCRIPTION)
             .active(DEFAULT_ACTIVE)
-            .createdOn(DEFAULT_CREATED_ON);
+            .createdOn(DEFAULT_CREATED_ON)
+            .alert(DEFAULT_ALERT);
         return post;
     }
 
@@ -137,6 +142,7 @@ public class PostResourceIntTest {
         assertThat(testPost.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
         assertThat(testPost.isActive()).isEqualTo(DEFAULT_ACTIVE);
         assertThat(testPost.getCreatedOn()).isEqualTo(DEFAULT_CREATED_ON);
+        assertThat(testPost.getAlert()).isEqualTo(DEFAULT_ALERT);
     }
 
     @Test
@@ -173,7 +179,8 @@ public class PostResourceIntTest {
             .andExpect(jsonPath("$.[*].userId").value(hasItem(DEFAULT_USER_ID.toString())))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
             .andExpect(jsonPath("$.[*].active").value(hasItem(DEFAULT_ACTIVE.booleanValue())))
-            .andExpect(jsonPath("$.[*].createdOn").value(hasItem(DEFAULT_CREATED_ON.toString())));
+            .andExpect(jsonPath("$.[*].createdOn").value(hasItem(DEFAULT_CREATED_ON.toString())))
+            .andExpect(jsonPath("$.[*].alert").value(hasItem(DEFAULT_ALERT.toString())));
     }
     
     @Test
@@ -190,7 +197,8 @@ public class PostResourceIntTest {
             .andExpect(jsonPath("$.userId").value(DEFAULT_USER_ID.toString()))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.active").value(DEFAULT_ACTIVE.booleanValue()))
-            .andExpect(jsonPath("$.createdOn").value(DEFAULT_CREATED_ON.toString()));
+            .andExpect(jsonPath("$.createdOn").value(DEFAULT_CREATED_ON.toString()))
+            .andExpect(jsonPath("$.alert").value(DEFAULT_ALERT.toString()));
     }
 
     @Test
@@ -217,7 +225,8 @@ public class PostResourceIntTest {
             .userId(UPDATED_USER_ID)
             .description(UPDATED_DESCRIPTION)
             .active(UPDATED_ACTIVE)
-            .createdOn(UPDATED_CREATED_ON);
+            .createdOn(UPDATED_CREATED_ON)
+            .alert(UPDATED_ALERT);
         PostDTO postDTO = postMapper.toDto(updatedPost);
 
         restPostMockMvc.perform(put("/api/posts")
@@ -233,6 +242,7 @@ public class PostResourceIntTest {
         assertThat(testPost.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
         assertThat(testPost.isActive()).isEqualTo(UPDATED_ACTIVE);
         assertThat(testPost.getCreatedOn()).isEqualTo(UPDATED_CREATED_ON);
+        assertThat(testPost.getAlert()).isEqualTo(UPDATED_ALERT);
     }
 
     @Test
