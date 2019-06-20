@@ -15,10 +15,10 @@
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
     <!--
-        Added the entity Comment.
+        Added the entity Friend.
     -->
-    <changeSet id="20190524044825-1" author="jhipster">
-        <createTable tableName="comment">
+    <changeSet id="20190618110102-1" author="jhipster">
+        <createTable tableName="friend">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -26,11 +26,15 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="content" type="varchar(255)">
+            <column name="friend_id" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="post_id" type="bigint">
+            <column name="accepted" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="status" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 

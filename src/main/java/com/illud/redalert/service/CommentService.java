@@ -43,6 +43,4 @@ public interface CommentService {
      * @param id the id of the entity
      */
     void delete(Long id);
-
-	Page<CommentDTO> findByUserId(String userId, Pageable pageable);
 }

@@ -11,6 +11,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
 
+import com.illud.redalert.domain.enumeration.Alert;
+
 /**
  * A Post.
  */
@@ -36,10 +38,16 @@ public class Post implements Serializable {
     @Column(name = "created_on")
     private Instant createdOn;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "alert")
+    private Alert alert;
+
     @OneToOne
     @JoinColumn(unique = true)
     private Location location;
 
+    @OneToMany(mappedBy = "post")
+    private Set<Media> media = new HashSet<>();
     @OneToMany(mappedBy = "post")
     private Set<Comment> comments = new HashSet<>();
     @OneToMany(mappedBy = "post")
@@ -105,6 +113,19 @@ public class Post implements Serializable {
         this.createdOn = createdOn;
     }
 
+    public Alert getAlert() {
+        return alert;
+    }
+
+    public Post alert(Alert alert) {
+        this.alert = alert;
+        return this;
+    }
+
+    public void setAlert(Alert alert) {
+        this.alert = alert;
+    }
+
     public Location getLocation() {
         return location;
     }
@@ -116,6 +137,31 @@ public class Post implements Serializable {
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    public Set<Media> getMedia() {
+        return media;
+    }
+
+    public Post media(Set<Media> media) {
+        this.media = media;
+        return this;
+    }
+
+    public Post addMedia(Media media) {
+        this.media.add(media);
+        media.setPost(this);
+        return this;
+    }
+
+    public Post removeMedia(Media media) {
+        this.media.remove(media);
+        media.setPost(null);
+        return this;
+    }
+
+    public void setMedia(Set<Media> media) {
+        this.media = media;
     }
 
     public Set<Comment> getComments() {
@@ -197,6 +243,7 @@ public class Post implements Serializable {
             ", description='" + getDescription() + "'" +
             ", active='" + isActive() + "'" +
             ", createdOn='" + getCreatedOn() + "'" +
+            ", alert='" + getAlert() + "'" +
             "}";
     }
 }

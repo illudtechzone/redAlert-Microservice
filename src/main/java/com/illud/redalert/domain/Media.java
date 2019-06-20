@@ -9,11 +9,11 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * A Comment.
+ * A Media.
  */
 @Entity
-@Table(name = "comment")
-public class Comment implements Serializable {
+@Table(name = "media")
+public class Media implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
@@ -21,14 +21,15 @@ public class Comment implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_id")
-    private String userId;
+    @Lob
+    @Column(name = "jhi_file")
+    private byte[] file;
 
-    @Column(name = "content")
-    private String content;
+    @Column(name = "jhi_file_content_type")
+    private String fileContentType;
 
     @ManyToOne
-    @JsonIgnoreProperties("comments")
+    @JsonIgnoreProperties("media")
     private Post post;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -40,37 +41,37 @@ public class Comment implements Serializable {
         this.id = id;
     }
 
-    public String getUserId() {
-        return userId;
+    public byte[] getFile() {
+        return file;
     }
 
-    public Comment userId(String userId) {
-        this.userId = userId;
+    public Media file(byte[] file) {
+        this.file = file;
         return this;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setFile(byte[] file) {
+        this.file = file;
     }
 
-    public String getContent() {
-        return content;
+    public String getFileContentType() {
+        return fileContentType;
     }
 
-    public Comment content(String content) {
-        this.content = content;
+    public Media fileContentType(String fileContentType) {
+        this.fileContentType = fileContentType;
         return this;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setFileContentType(String fileContentType) {
+        this.fileContentType = fileContentType;
     }
 
     public Post getPost() {
         return post;
     }
 
-    public Comment post(Post post) {
+    public Media post(Post post) {
         this.post = post;
         return this;
     }
@@ -88,11 +89,11 @@ public class Comment implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Comment comment = (Comment) o;
-        if (comment.getId() == null || getId() == null) {
+        Media media = (Media) o;
+        if (media.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(getId(), comment.getId());
+        return Objects.equals(getId(), media.getId());
     }
 
     @Override
@@ -102,10 +103,10 @@ public class Comment implements Serializable {
 
     @Override
     public String toString() {
-        return "Comment{" +
+        return "Media{" +
             "id=" + getId() +
-            ", userId='" + getUserId() + "'" +
-            ", content='" + getContent() + "'" +
+            ", file='" + getFile() + "'" +
+            ", fileContentType='" + getFileContentType() + "'" +
             "}";
     }
 }

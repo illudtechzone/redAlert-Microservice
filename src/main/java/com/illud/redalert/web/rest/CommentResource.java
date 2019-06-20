@@ -116,13 +116,4 @@ public class CommentResource {
         commentService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-    @GetMapping("/comments-userId/{userId}")
-    public ResponseEntity<List<CommentDTO>> getAllDetailsByUserId(@PathVariable String userId,Pageable pageable){
-    	log.debug("REST request to getAllDetailsByUserId : {}", userId,pageable);
-    	Page<CommentDTO> page = commentService.findByUserId(userId,pageable);
-    	HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/comments/userId");
-    	
-		return ResponseEntity.ok().headers(headers).body(page.getContent());
-    	
-    }
 }

@@ -1,6 +1,6 @@
 package com.illud.redalert.service;
 
-import com.illud.redalert.service.dto.PostDTO;
+import com.illud.redalert.service.dto.MediaDTO;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -8,37 +8,37 @@ import org.springframework.data.domain.Pageable;
 import java.util.Optional;
 
 /**
- * Service Interface for managing Post.
+ * Service Interface for managing Media.
  */
-public interface PostService {
+public interface MediaService {
 
     /**
-     * Save a post.
+     * Save a media.
      *
-     * @param postDTO the entity to save
+     * @param mediaDTO the entity to save
      * @return the persisted entity
      */
-    PostDTO save(PostDTO postDTO);
+    MediaDTO save(MediaDTO mediaDTO);
 
     /**
-     * Get all the posts.
+     * Get all the media.
      *
      * @param pageable the pagination information
      * @return the list of entities
      */
-    Page<PostDTO> findAll(Pageable pageable);
+    Page<MediaDTO> findAll(Pageable pageable);
 
 
     /**
-     * Get the "id" post.
+     * Get the "id" media.
      *
      * @param id the id of the entity
      * @return the entity
      */
-    Optional<PostDTO> findOne(Long id);
+    Optional<MediaDTO> findOne(Long id);
 
     /**
-     * Delete the "id" post.
+     * Delete the "id" media.
      *
      * @param id the id of the entity
      */

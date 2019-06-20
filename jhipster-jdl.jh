@@ -1,24 +1,22 @@
-entity UserDetails{
-userId String required, 
-firstName String,
-lastName String,
-password String
-mobileNum Double,
-alert Alert
 
-}
+
+
 entity Post{
 userId String,
 description String,
 active Boolean,
 createdOn Instant,
-
+alert Alert
 }
 enum Alert{
 RED,
 ORANGE,
 GREEN
 
+}
+entity Media
+{
+file Blob
 }
 
 entity Location{
@@ -39,25 +37,33 @@ reportType ReportType
 enum ReportType{
 FAKE,
 SOLVED,
-DOING,
+INPROGRESS,
 TIMEOUT
 
 }
 
-entity FriendList{
-friendId String
+entity Friend{
+userId String,
+friendId String,
+accepted Boolean,
+status Status
 }
+enum Status{
+PENDING,
+ACCEPTED,
+REJECTED
 
+}
 
 relationship OneToOne{
 Post {location} to Location
 
 }
 relationship OneToMany{
+Post{media} to Media
 Post{comments} to Comment,
-Comment{replies} to Comment,
 Post {reports} to Report
-UserDetails{friends} to FriendList
+
 }
 dto * with mapstruct
 service all with serviceImpl

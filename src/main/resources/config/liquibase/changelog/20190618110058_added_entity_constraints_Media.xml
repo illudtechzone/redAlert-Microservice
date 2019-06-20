@@ -4,13 +4,13 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
     <!--
-        Added the constraints for entity Comment.
+        Added the constraints for entity Media.
     -->
-    <changeSet id="20190524044825-2" author="jhipster">
+    <changeSet id="20190618110058-2" author="jhipster">
         
         <addForeignKeyConstraint baseColumnNames="post_id"
-                                 baseTableName="comment"
-                                 constraintName="fk_comment_post_id"
+                                 baseTableName="media"
+                                 constraintName="fk_media_post_id"
                                  referencedColumnNames="id"
                                  referencedTableName="post"/>
 

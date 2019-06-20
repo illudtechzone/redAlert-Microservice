@@ -37,6 +37,10 @@
             <column name="created_on" type="datetime">
                 <constraints nullable="true" />
             </column>
+
+            <column name="alert" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
             <column name="location_id" type="bigint">
                 <constraints unique="true" nullable="true" uniqueConstraintName="ux_post_location_id" />
             </column>

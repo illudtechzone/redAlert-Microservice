@@ -12,12 +12,9 @@ import org.mapstruct.*;
 public interface CommentMapper extends EntityMapper<CommentDTO, Comment> {
 
     @Mapping(source = "post.id", target = "postId")
-    @Mapping(source = "comment.id", target = "commentId")
     CommentDTO toDto(Comment comment);
 
     @Mapping(source = "postId", target = "post")
-    @Mapping(source = "commentId", target = "comment")
-    @Mapping(target = "replies", ignore = true)
     Comment toEntity(CommentDTO commentDTO);
 
     default Comment fromId(Long id) {

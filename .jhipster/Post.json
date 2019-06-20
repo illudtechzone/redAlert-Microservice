@@ -16,6 +16,11 @@
         {
             "fieldName": "createdOn",
             "fieldType": "Instant"
+        },
+        {
+            "fieldName": "alert",
+            "fieldType": "Alert",
+            "fieldValues": "RED,ORANGE,GREEN"
         }
     ],
     "relationships": [
@@ -26,6 +31,12 @@
             "relationshipName": "location",
             "otherEntityField": "id",
             "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "media",
+            "otherEntityRelationshipName": "post",
+            "relationshipName": "media"
         },
         {
             "relationshipType": "one-to-many",
