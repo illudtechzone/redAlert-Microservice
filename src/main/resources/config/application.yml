@@ -127,10 +127,13 @@ spring:
 security:
     oauth2:
         client:
-            client-id: internal
-            client-secret: internal
+            access-token-uri: http://35.196.86.249:8080/auth/realms/RedAlert/protocol/openid-connect/token
+            user-authorization-uri: http://35.196.86.249:8080/auth/realms/RedAlert/protocol/openid-connect/auth
+            client-id: account
+            client-secret: 1e557c04-6b2c-49f3-b3b1-32935defbe0c
+            scope: openid profile email
         resource:
-            user-info-uri: http://localhost:9080/auth/realms/jhipster/protocol/openid-connect/userinfo
+            user-info-uri: http://35.196.86.249:8080/auth/realms/RedAlert/protocol/openid-connect/userinfo
 
 server:
     servlet:
